@@ -5,7 +5,11 @@ import { useAuth } from "../../contexts";
 export default function Register({ setTokenExists, inputValue, setInputValue }) {
   const [passwordValue, setPasswordValue] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [initialAmount, setInitialAmount] = useState(0)
+  const [currency,setCurrency] = useState("GPD")
   const { setUser, user } = useAuth();
+  const goTo = useNavigate();
+
 
 
   const handleInput = e => {
@@ -17,6 +21,12 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
   const handlePasswordConfirmation = e => {
     setPasswordConfirmation(e.target.value)
   }
+  const handleInitialAmount = e => {
+    setInitialAmount(e.target.value)
+  }
+  const handleCurrency = e => {
+    setCurrency(e.target.value)
+  }
   const handleSubmit = e => {
     e.preventDefault()
     const login = async (userData) => {
@@ -26,7 +36,7 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
           method: "POST",
           body: JSON.stringify({
             username: userData.username,
-            password: passwordValue
+            password: passwordValue           
           }),
           headers: {
             "Content-Type": "application/json"
@@ -40,10 +50,12 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         const loginData = await response.json()
         console.log(loginData)
         if (loginData.authenticated) {
-          setUser([inputValue, loginData.token])
-          sessionStorage.setItem("user", inputValue)
-          sessionStorage.setItem("token", loginData.token)
-          setTokenExists(true)
+  
+            setUser([inputValue,loginData.token])
+            sessionStorage.setItem("user",inputValue)
+            sessionStorage.setItem("token",loginData.token)
+            goTo("/", {replace:true});
+          
         }
       } catch (err) {
         console.error({ error: err })
@@ -55,7 +67,10 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
           method: "POST",
           body: JSON.stringify({
             username: inputValue,
-            password: passwordValue
+            password: passwordValue,
+            initial_balance: initialAmount,
+            currency: currency,
+            current_balance: 0
           }),
           headers: {
             "Content-Type": "application/json",
@@ -118,6 +133,10 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
           value={passwordConfirmation}
           placeholder="Confirm password"
         />
+        <select name="currency" id="" onChange={handleCurrency}>
+          <option value="GPD">GPD</option>
+        </select>
+        <input type="number" min="0" step="0.01" value={initialAmount} onChange={handleInitialAmount} />
         <input type="submit" />
       </form>
       <NavLink to="/login">Already have an account? Login here</NavLink>
