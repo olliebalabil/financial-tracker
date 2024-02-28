@@ -49,7 +49,7 @@ class User {
     let balanceQuery = await db.query('SELECT amount FROM transactions WHERE user_id = $1;', [this.user_id]);
     let newBalance =parseFloat(this.initial_balance);
     for (let i = 0; i<balanceQuery.rows.length;i++) {
-      newBalance += parseFloat(balanceQuery.rows[i].amount)
+      newBalance -= parseFloat(balanceQuery.rows[i].amount)
     }
     let response = await db.query(
       'UPDATE users SET current_balance = $1 WHERE user_id = $2 RETURNING *;',[newBalance,this.user_id]
