@@ -39,6 +39,7 @@ export default function Login() {
           setUser([inputValue,data.token])
           sessionStorage.setItem("user",inputValue)
           sessionStorage.setItem("token",data.token)
+          sessionStorage.setItem("user_id",data.user_id)
           goTo("/", {replace:true});
         }
       } catch (err) {

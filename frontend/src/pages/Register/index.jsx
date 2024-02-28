@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react'
-import { Register, InitialAccountForm } from '../../components'
+import { Register} from '../../components'
 
 export default function RegisterPage() {
   const [tokenExists,setTokenExists] = useState(false)
@@ -12,6 +12,5 @@ export default function RegisterPage() {
       setTokenExists(false)
     }
   },[sessionStorage.getItem("token")])
-  return (!tokenExists ?
-    <Register setTokenExists={setTokenExists} inputValue={inputValue} setInputValue={setInputValue}/> : <InitialAccountForm inputValue/>)
+  return (<Register setTokenExists={setTokenExists} inputValue={inputValue} setInputValue={setInputValue}/>)
 }
