@@ -18,7 +18,6 @@ export default function Login() {
     e.preventDefault();
     const login = async () => {
       try {
-        console.log(inputValue, passwordValue)
         const options = {
           method: "POST",
           body: JSON.stringify({
@@ -46,7 +45,6 @@ export default function Login() {
     login()
     setInputValue("")
     setPasswordValue("")
-    console.log("here")
   }
 
   useEffect(() => {

@@ -8,7 +8,8 @@ export default function InfoCard() {
             const response = await fetch(`https://financial-tracker-auth.onrender.com/users/account/id/${sessionStorage.getItem("user_id")}`)
             if (response.status==200) {
               const data = await response.json()
-              console.log(data)
+              console.log(data.current_balance)
+            
               setInfo(data)
             }
 
@@ -22,7 +23,7 @@ export default function InfoCard() {
   return (
 
     <div>
-      <h1>Balance: {info.current_balance}{info.currency}</h1>
+      <h1>Balance: {info.currency}{parseFloat(info.current_balance).toFixed(2)}</h1>
     </div>
   )
 }

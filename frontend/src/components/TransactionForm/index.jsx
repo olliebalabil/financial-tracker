@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-
+import { useTransaction } from '../../contexts'
 export default function TransactionForm() {
+  const {transactions,setTransactions} = useTransaction()
   const [reference,setReference] = useState("")
   const [amount,setAmount] = useState(0)
   const [category,setCategory] = useState("Other")
@@ -34,13 +35,16 @@ export default function TransactionForm() {
         if (response.status == 200) {
           const data = await response.json()
           console.log(data)
+          setTransactions([data,...transactions])
         }
       } catch (err) {
         console.error({error:err})
       }
     }
     createTransaction()
-
+    setAmount(0)
+    setCategory("")
+    setReference("")
   }
 
 

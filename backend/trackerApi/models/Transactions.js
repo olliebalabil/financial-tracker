@@ -21,7 +21,7 @@ class Transactions {
   }  
   //get all by account
   static async getAllByAccount(id) {
-    const response = await db.query('SELECT * FROM transactions WHERE user_id = $1', [
+    const response = await db.query('SELECT * FROM transactions WHERE user_id = $1 ORDER BY transaction_id DESC', [
       id,
     ]);
     if (response.rows.length == 0) {

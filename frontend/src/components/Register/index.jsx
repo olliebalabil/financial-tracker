@@ -6,17 +6,9 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
   const [passwordValue, setPasswordValue] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
   const [initialAmount, setInitialAmount] = useState(0)
-  const [currency, setCurrency] = useState("GPD")
+  const [currency, setCurrency] = useState("£")
   const goTo = useNavigate();
 
-  useEffect(() => {
-    console.log(
-      Object.keys(currencies).map((key, index) => (
-        currencies[key].symbol.default.code
-      ))
-    )
-      
-  }, [])
 
 
   const handleInput = e => {
@@ -57,7 +49,7 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         const loginData = await response.json()
         console.log(loginData)
         if (loginData.authenticated) {
-
+          sessionStorage.setItem("user_id",loginData.user_id)
           sessionStorage.setItem("user", inputValue)
           sessionStorage.setItem("token", loginData.token)
           goTo("/", { replace: true });
@@ -75,9 +67,9 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
             username: inputValue,
             password: passwordValue,
             initial_balance: initialAmount,
-            currency: currency,
-            current_balance: 0
-          }),
+            current_balance: initialAmount,
+            currency: currency
+            }),
           headers: {
             "Content-Type": "application/json",
           }
@@ -140,10 +132,10 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
           placeholder="Confirm password"
         />
         <select name="currency" id="" onChange={handleCurrency}>
-          {Object.keys(currencies).map((key, index) => (
-            <option key={index} value={currencies[key].iso.code}><div dangerouslySetInnerHTML={{ __html: currencies[key].symbol.default.code }}></div>
-            </option>
-          ))}
+          <option value="€">"€"</option>
+          <option value="£">"£"</option>
+          <option value="¥">"¥"</option>
+          <option value="$">"$"</option>
         </select>
         <input type="number" min="0" step="0.01" value={initialAmount} onChange={handleInitialAmount} />
         <input type="submit" />
@@ -153,3 +145,5 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
   )
 }
 
+
+//<div dangerouslySetInnerHTML={{ __html: currencies[key].symbol.default.code }}></div>
