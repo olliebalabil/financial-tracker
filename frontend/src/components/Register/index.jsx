@@ -1,13 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import currencies from "../../../currencies.json"
 
 export default function Register({ setTokenExists, inputValue, setInputValue }) {
   const [passwordValue, setPasswordValue] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
   const [initialAmount, setInitialAmount] = useState(0)
-  const [currency,setCurrency] = useState("GPD")
+  const [currency, setCurrency] = useState("GPD")
   const goTo = useNavigate();
 
+  useEffect(() => {
+    console.log(
+      Object.keys(currencies).map((key, index) => (
+        currencies[key].symbol.default.code
+      ))
+    )
+      
+  }, [])
 
 
   const handleInput = e => {
@@ -34,7 +43,7 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
           method: "POST",
           body: JSON.stringify({
             username: userData.username,
-            password: passwordValue           
+            password: passwordValue
           }),
           headers: {
             "Content-Type": "application/json"
@@ -48,11 +57,11 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         const loginData = await response.json()
         console.log(loginData)
         if (loginData.authenticated) {
-  
-            sessionStorage.setItem("user",inputValue)
-            sessionStorage.setItem("token",loginData.token)
-            goTo("/", {replace:true});
-          
+
+          sessionStorage.setItem("user", inputValue)
+          sessionStorage.setItem("token", loginData.token)
+          goTo("/", { replace: true });
+
         }
       } catch (err) {
         console.error({ error: err })
@@ -76,7 +85,7 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         const response = await fetch("https://financial-tracker-auth.onrender.com/users/register", options)
         if (!response.ok) {
           console.error(response)
-          if (response.error=='duplicate key value violates unique constraint "users_username_key"') {
+          if (response.error == 'duplicate key value violates unique constraint "users_username_key"') {
             console.log("This username is already in use.")
           }
         } else {
@@ -131,7 +140,10 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
           placeholder="Confirm password"
         />
         <select name="currency" id="" onChange={handleCurrency}>
-          <option value="GPD">GPD</option>
+          {Object.keys(currencies).map((key, index) => (
+            <option key={index} value={currencies[key].iso.code}><div dangerouslySetInnerHTML={{ __html: currencies[key].symbol.default.code }}></div>
+            </option>
+          ))}
         </select>
         <input type="number" min="0" step="0.01" value={initialAmount} onChange={handleInitialAmount} />
         <input type="submit" />
@@ -140,3 +152,4 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
     </>
   )
 }
+
