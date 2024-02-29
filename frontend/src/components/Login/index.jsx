@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-import { useAuth } from "../../contexts";
 
 export default function Login() {
   const goTo = useNavigate();
   const [inputValue, setInputValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const { setUser, user } = useAuth();
   const inputRef = useRef();
 
   function handleInput(e) {
@@ -32,11 +30,10 @@ export default function Login() {
           }
         }
         const response = await fetch("https://financial-tracker-auth.onrender.com/users/login", options)
-        
+        //add loading here?
         const data = await response.json()
         console.log(data)
         if (data.authenticated) {
-          setUser([inputValue,data.token])
           sessionStorage.setItem("user",inputValue)
           sessionStorage.setItem("token",data.token)
           sessionStorage.setItem("user_id",data.user_id)

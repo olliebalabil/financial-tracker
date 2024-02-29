@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useAuth } from "../../contexts";
 
 export default function Register({ setTokenExists, inputValue, setInputValue }) {
   const [passwordValue, setPasswordValue] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
   const [initialAmount, setInitialAmount] = useState(0)
   const [currency,setCurrency] = useState("GPD")
-  const { setUser, user } = useAuth();
   const goTo = useNavigate();
 
 
@@ -51,7 +49,6 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         console.log(loginData)
         if (loginData.authenticated) {
   
-            setUser([inputValue,loginData.token])
             sessionStorage.setItem("user",inputValue)
             sessionStorage.setItem("token",loginData.token)
             goTo("/", {replace:true});
