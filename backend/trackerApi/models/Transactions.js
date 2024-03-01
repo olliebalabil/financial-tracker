@@ -24,9 +24,7 @@ class Transactions {
     const response = await db.query('SELECT * FROM transactions WHERE user_id = $1 ORDER BY transaction_id DESC', [
       id,
     ]);
-    if (response.rows.length == 0) {
-      throw new Error('Unable to locate transactions.');
-    }
+   
     return response.rows.map(t=> new Transactions(t));
   }  
   //create transaction
