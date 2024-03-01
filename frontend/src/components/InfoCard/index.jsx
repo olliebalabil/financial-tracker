@@ -1,6 +1,9 @@
 import React, {useState,useEffect} from 'react'
+import {useBalance} from "../../contexts"
+
 
 export default function InfoCard() {
+  const {balance,setBalance} = useBalance()
   const [info,setInfo] = useState({})
   useEffect(() => {
     const getAccountData = async () => {
@@ -8,7 +11,8 @@ export default function InfoCard() {
             const response = await fetch(`https://financial-tracker-auth.onrender.com/users/account/id/${sessionStorage.getItem("user_id")}`)
             if (response.status==200) {
               const data = await response.json()
-              console.log(data)
+              console.log(data.current_balance)
+              setBalance([data.currency,parseFloat(data.current_balance).toFixed(2)])
               setInfo(data)
             }
 
@@ -22,7 +26,7 @@ export default function InfoCard() {
   return (
 
     <div>
-      <h1>Balance: {info.current_balance}{info.currency}</h1>
+      <h1>Balance: {balance[0]}{balance[1]}</h1>
     </div>
   )
 }

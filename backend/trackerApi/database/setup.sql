@@ -9,7 +9,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     initial_balance DECIMAL(19,4),
     current_balance DECIMAL(19,4),
-    currency VARCHAR(3) NOT NULL,
+    currency VARCHAR(25) NOT NULL,
     PRIMARY KEY (user_id)
 );
 

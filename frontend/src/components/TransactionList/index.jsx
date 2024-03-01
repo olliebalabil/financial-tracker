@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import {TransactionCard} from "../../components"
+import { useTransaction } from '../../contexts'
 
 export default function TransactionList() {
-  const [transacitonArray, setTransactionArray] = useState([])
+  const {transactions, setTransactions} = useTransaction()
   useEffect(() => {
     const getAccountData = async () => {
       try {
@@ -9,7 +11,7 @@ export default function TransactionList() {
         if (response.status == 200) {
           const data = await response.json()
           console.log(data)
-          setTransactionArray(data)
+          setTransactions(data)
         }
 
       } catch (err) {
@@ -20,12 +22,9 @@ export default function TransactionList() {
   }, [sessionStorage.getItem("user_id")])
   return (
     <div className='transaction-list'>
-      {transacitonArray.map((t) =>
-        <div key={t.tranaction_id}>
-          <h1>{t.reference}</h1>
-          <h2>{t.amount}</h2>
-          <h2>{t.category}</h2>
-        </div>
+      {transactions.map((t) =>
+      <TransactionCard transaction={t}/>
+        
       )}
     </div>
   )
