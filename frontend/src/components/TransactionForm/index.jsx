@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useTransaction } from '../../contexts'
+import { useTransaction,useBalance } from '../../contexts'
 export default function TransactionForm() {
   const {transactions,setTransactions} = useTransaction()
-  const [reference,setReference] = useState("")
+  const {balance,setBalance} = useBalance()
+  const [reference,setReference] = useState()
   const [amount,setAmount] = useState(0)
   const [category,setCategory] = useState("Other")
 
@@ -36,6 +37,7 @@ export default function TransactionForm() {
           const data = await response.json()
           console.log(data)
           setTransactions([data,...transactions])
+          setBalance([balance[0],(balance[1]-data.amount).toFixed(2)])
         }
       } catch (err) {
         console.error({error:err})
@@ -50,11 +52,11 @@ export default function TransactionForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" placeholder='Reference' onChange={handleReference}/>
+      <input type="text" placeholder='Reference' onChange={handleReference} value={reference}/>
       <label>Amount: </label>
-      <input type="number" min="0" step="0.01" onChange={handleAmount}/>
+      <input type="number" min="0" step="0.01" onChange={handleAmount} value={amount}/>
       <label>Category: </label>
-      <select onChange={handleCategory} defaultValue="Other">
+      <select onChange={handleCategory} defaultValue="Other" value={category}>
         <option value="Food">Food</option>
         <option value="Bills">Bills</option>
         <option value="Other" >Other</option>
