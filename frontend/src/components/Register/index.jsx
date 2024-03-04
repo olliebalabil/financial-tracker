@@ -7,6 +7,8 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
   const [initialAmount, setInitialAmount] = useState(0)
   const [currency, setCurrency] = useState("£")
+  const [loading,setLoading] = useState(false)
+  const [message,setMessage] = useState("")
   const goTo = useNavigate();
 
 
@@ -30,7 +32,6 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
     e.preventDefault()
     const login = async (userData) => {
       try {
-        console.log(inputValue, passwordValue)
         const options = {
           method: "POST",
           body: JSON.stringify({
@@ -43,11 +44,9 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         }
         const response = await fetch("https://financial-tracker-auth.onrender.com/users/login", options)
         if (!response.ok) {
-          console.log(response.json())
           throw new Error("Network response was not ok");
         }
         const loginData = await response.json()
-        console.log(loginData)
         if (loginData.authenticated) {
           sessionStorage.setItem("user_id",loginData.user_id)
           sessionStorage.setItem("user", inputValue)
@@ -57,10 +56,13 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         }
       } catch (err) {
         console.error({ error: err })
+      } finally {
+        setLoading(false)
       }
     }
     const register = async () => {
       try {
+        setLoading(true)
         const options = {
           method: "POST",
           body: JSON.stringify({
@@ -77,24 +79,36 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         const response = await fetch("https://financial-tracker-auth.onrender.com/users/register", options)
         if (!response.ok) {
           console.error(response)
-          if (response.error == 'duplicate key value violates unique constraint "users_username_key"') {
+          setLoading(false)
+          
             console.log("This username is already in use.")
-          }
+            setMessage("This username is already in use.")
+            setTimeout(() => {
+              setMessage("")
+            }, 2500)
+          
         } else {
           const data = await response.json()
-          console.log(data)
           login(data)
         }
       } catch (err) {
         console.error({ error: err })
+        setLoading(false)
       }
     }
 
 
     if (passwordValue == "" || passwordConfirmation == "" || inputValue == "") {
-      console.log("Ensure a username and password has been given.")
+      setMessage("Ensure all info is given.")
+      setTimeout(() => {
+        setMessage("")
+      }, 2500)
     } else if (passwordValue != passwordConfirmation) {
-      console.log("passwords don't match")
+      setMessage("Passwords don't match.")
+      setTimeout(() => {
+        setMessage("")
+      }, 2500)
+      set
     } else {
       register()
       setInputValue("")
@@ -132,14 +146,16 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
           placeholder="Confirm password"
         />
         <select name="currency" id="" onChange={handleCurrency}>
-          <option value="€">"€"</option>
-          <option value="£">"£"</option>
-          <option value="¥">"¥"</option>
-          <option value="$">"$"</option>
+          <option value="£">£</option>
+          <option value="€">€</option>
+          <option value="¥">¥</option>
+          <option value="$">$</option>
         </select>
         <input type="number" min="0" step="0.01" value={initialAmount} onChange={handleInitialAmount} />
         <input type="submit" />
       </form>
+      <p>{message}</p>
+      {loading && <h3>Creating Account...</h3>}
       <NavLink to="/login">Already have an account? Login here</NavLink>
     </>
   )

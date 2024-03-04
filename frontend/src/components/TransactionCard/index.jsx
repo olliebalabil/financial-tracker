@@ -20,7 +20,6 @@ export default function TransactionCard({transaction}) {
         }
         const response = await fetch("https://financial-tracker-auth.onrender.com/transaction/transaction",options)
         const data = await response.json()
-        console.log(data)
         if (response.status==200) {
           setTransactions([...transactions].filter(t=>t.transaction_id!=data.transaction_id))
          

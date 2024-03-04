@@ -35,7 +35,6 @@ export default function TransactionForm() {
         const response = await fetch("https://financial-tracker-auth.onrender.com/transaction/transaction", options)
         if (response.status == 200) {
           const data = await response.json()
-          console.log(data)
           setTransactions([data,...transactions])
           setBalance([balance[0],(balance[1]-data.amount).toFixed(2)])
         }
@@ -56,7 +55,8 @@ export default function TransactionForm() {
       <label>Amount: </label>
       <input type="number" min="0" step="0.01" onChange={handleAmount} value={amount}/>
       <label>Category: </label>
-      <select onChange={handleCategory} defaultValue="Other" value={category}>
+      <select onChange={handleCategory} value={category}>
+        
         <option value="Food">Food</option>
         <option value="Bills">Bills</option>
         <option value="Other" >Other</option>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import {TransactionCard} from "../../components"
 import { useTransaction } from '../../contexts'
 
@@ -10,7 +10,6 @@ export default function TransactionList() {
         const response = await fetch(`https://financial-tracker-auth.onrender.com/transaction/transactions/${sessionStorage.getItem("user_id")}`)
         if (response.status == 200) {
           const data = await response.json()
-          console.log(data)
           setTransactions(data)
         }
 
@@ -23,7 +22,7 @@ export default function TransactionList() {
   return (
     <div className='transaction-list'>
       {transactions.map((t) =>
-      <TransactionCard transaction={t}/>
+      <TransactionCard transaction={t} key={t.transaction_id}/>
         
       )}
     </div>

@@ -7,15 +7,15 @@ export default function Home() {
     const goTo = useNavigate()
     return (
         <>
-            <InfoCard/>
-            <TransactionForm/>
-            <TransactionList/>
             <button onClick={() => {
                 sessionStorage.removeItem("user")
                 sessionStorage.removeItem("token")
                 sessionStorage.removeItem("user_id")
                 goTo("/login")
             }}>Logout</button>
+            <InfoCard/>
+            <TransactionForm/>
+            <TransactionList/>
         </>
     );
 }

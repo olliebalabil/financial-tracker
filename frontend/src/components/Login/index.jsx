@@ -5,6 +5,8 @@ export default function Login() {
   const goTo = useNavigate();
   const [inputValue, setInputValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState("")
   const inputRef = useRef();
 
   function handleInput(e) {
@@ -18,6 +20,7 @@ export default function Login() {
     e.preventDefault();
     const login = async () => {
       try {
+        setLoading(true)
         const options = {
           method: "POST",
           body: JSON.stringify({
@@ -29,22 +32,39 @@ export default function Login() {
           }
         }
         const response = await fetch("https://financial-tracker-auth.onrender.com/users/login", options)
-        //add loading here?
         const data = await response.json()
-        console.log(data)
         if (data.authenticated) {
-          sessionStorage.setItem("user",inputValue)
-          sessionStorage.setItem("token",data.token)
-          sessionStorage.setItem("user_id",data.user_id)
-          goTo("/", {replace:true});
+          sessionStorage.setItem("user", inputValue)
+          sessionStorage.setItem("token", data.token)
+          sessionStorage.setItem("user_id", data.user_id)
+          goTo("/", { replace: true });
+        } else {
+          setMessage("Username or password incorrect. Try again")
+          setTimeout(() => {
+            setMessage("")
+          }, 2500)
         }
       } catch (err) {
         console.error({ error: err })
+      } finally {
+        setLoading(false)
       }
     }
-    login()
-    setInputValue("")
-    setPasswordValue("")
+    if (!inputValue) {
+      setMessage("Enter your username")
+      setTimeout(() => {
+        setMessage("")
+      }, 2500)
+    } else if (!passwordValue) {
+      setMessage("Enter your password")
+      setTimeout(() => {
+        setMessage("")
+      }, 2500)
+    } else {
+      login()
+      setInputValue("")
+      setPasswordValue("")
+    }
   }
 
   useEffect(() => {
@@ -73,6 +93,8 @@ export default function Login() {
         <br />
         <input type="submit" />
       </form>
+      <p>{message}</p>
+      {loading && <h3>Loading...</h3>}
       <NavLink to="/register">Don't have an account? Create an account here</NavLink>
     </>
   );
