@@ -1,0 +1,177 @@
+/* Resetting default browser styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+}
+
+
+
+
+/* Transaction card styles */
+.transaction-card {
+  display: flex;
+  height: auto;
+  margin: 20px;
+  padding-bottom: 10px;
+  background-color: #fff;
+  border-radius: 1vh;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-card .circle.withdraw {
+  background-color: red;
+  width: 3vh;
+  height: 3vh;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 2vh;
+  margin-left: 2vh;
+  border-radius: 50%;
+}
+.transaction-card .circle.deposit {
+  background-color: green;
+  width: 3vh;
+  height: 3vh;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 2vh;
+  margin-left: 2vh;
+  border-radius: 50%;
+}
+
+.transaction-card h1 {
+  font-size: 4vh;
+  font-weight: bold;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.transaction-card h2 {
+  font-size: 3vh;
+  margin-left: 3vh;
+}
+.transaction-card .amount-category {
+  margin-left: 4vh;
+  display: flex;
+}
+
+.transaction-card img {
+  width: 6vh;
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 3vh;
+  margin-left: auto;
+}
+.transaction-card img:hover {
+  width: 6.5vh;
+  margin-right: 2.8vh;
+}
+
+
+/* Form styles */
+form {
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
