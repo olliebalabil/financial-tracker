@@ -24,7 +24,7 @@ export default function InfoCard() {
 
   return (
 
-    <div>
+    <div className='info-card'>
       <h1>Balance: {balance[0]}{balance[1]}</h1>
     </div>
   )

@@ -6,7 +6,7 @@ export default function TransactionForm() {
   const [reference, setReference] = useState()
   const [amount, setAmount] = useState(0)
   const [category, setCategory] = useState("Other")
-  const [deposit,setDeposit] = useState(false)
+  const [deposit, setDeposit] = useState(false)
 
   const handleReference = (e) => {
     setReference(e.target.value)
@@ -17,7 +17,7 @@ export default function TransactionForm() {
   const handleCategory = (e) => {
     setCategory(e.target.value)
   }
-  const handleToggle = (e) =>{
+  const handleToggle = (e) => {
     setDeposit(!deposit)
   }
   const handleSubmit = (e) => {
@@ -58,18 +58,24 @@ export default function TransactionForm() {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" placeholder='Reference' onChange={handleReference} value={reference} />
-      <label>Amount: </label>
+    <form onSubmit={handleSubmit} className='transaction-form'>
+      <div className="reference">
+      <label>Reference </label>
+      <input type="text" onChange={handleReference} value={reference} />
+      </div>
+      <div className="amount">
+      <label>Amount </label>
       <input type="number" min="0" step="0.01" onChange={handleAmount} value={amount} />
-      <label>Deposit:</label>
-      <label class="switch">
-        
-        <input type="checkbox" onChange={handleToggle}/>
-          <span class="slider round"></span>
+
+      </div>
+      <label>Deposit</label>
+      <label className="switch">
+
+        <input type="checkbox" onChange={handleToggle} />
+        <span className="slider round"></span>
       </label>
 
-      <label>Category: </label>
+      <label>Category </label>
       <select onChange={handleCategory} value={category}>
 
         <option value="Miscellaneous">Miscellaneous</option>
