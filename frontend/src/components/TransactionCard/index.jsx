@@ -35,8 +35,11 @@ export default function TransactionCard({ transaction }) {
 
   return (
     <div className={`transaction-card`} key={transaction.transaction_id}>
+    <div className='circle-title'>
       <div className={`circle ${(transaction.amount > 0) ? "withdraw" : "deposit"}`}></div>
       <h1 className="title">{transaction.reference}</h1>
+
+    </div>
       <div className='amount-category'>
         <h2 className='amount'>{balance[0]}{Math.abs(parseFloat(transaction.amount)).toFixed(2)}</h2>
         <h2>{transaction.category}</h2>

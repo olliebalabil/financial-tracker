@@ -120,7 +120,7 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='register-form'>
         <input
           type="text"
           onChange={handleInput}

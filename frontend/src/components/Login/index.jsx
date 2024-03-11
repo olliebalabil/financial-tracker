@@ -74,7 +74,7 @@ export default function Login() {
   return (
 
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="login-form">
         <input
           type="text"
           onChange={handleInput}

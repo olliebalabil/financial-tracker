@@ -4,8 +4,35 @@ body, html {
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f5f5;
+  
 }
 
+.login-form, .register-form {
+  width: 50%;
+  margin-inline: auto;
+  padding: 2vw;
+  margin-top: 2vh;
+}
+
+.login-form > input, .register-form > input {
+  margin-inline: auto;
+  max-width: 90%;
+}
+.register-form > select {
+  margin-inline: auto;
+  max-width: 20%;
+}
+
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.form-and-list {
+  display: flex;
+  /* flex-direction: column; */
+  width: 70%;
+}
 
 .info-card {
   background-color: #fff;
@@ -19,27 +46,27 @@ body, html {
   align-items: center;
   border-radius: 1vh;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1.5vh;
+  font-size: clamp(0.5rem,1.5vw + 0.4rem, 1rem);
 }
 
 
 .transaction-list {
-  margin-left: auto;
+  margin-left: 2vw;
   margin-right: auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  width: 60%;
 }
 /* Transaction card styles */
 .transaction-card {
   display: flex;
   justify-content: space-between;
   height: fit-content;
-  width: 95%;
+  width: 90vw;
   margin-top: 1vh;
   margin-bottom: 1vh;
-  margin-right: auto;
-  margin-left: auto;
+  margin-inline: auto;
   padding: 1vw;
   background-color: #fff;
   border-radius: 1vh;
@@ -50,53 +77,66 @@ body, html {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
+.transaction-card .circle-title {
+  display: flex;
+  width: max(10rem,30%);
+  
+}
+.transaction-card .circle-title .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
 .transaction-card .circle.withdraw {
   background-color: red;
-  width: 3vh;
-  height: 3vh;
+  height: max(10px,5vh);
+  aspect-ratio: 1/1;
   margin-top: auto;
   margin-bottom: auto;
-  margin-right: 2vh;
-  margin-left: 2vh;
+  margin-inline: 1rem;
+
   border-radius: 50%;
 }
 .transaction-card .circle.deposit {
   background-color: green;
-  width: 3vh;
-  height: 3vh;
+  height: max(10px,5vh);
+  aspect-ratio: 1/1;
   margin-top: auto;
   margin-bottom: auto;
-  margin-right: 2vh;
-  margin-left: 2vh;
+  margin-inline: 1rem;
   border-radius: 50%;
 }
 
 .transaction-card h1 {
-  font-size: 4vw;
+  font-size: clamp(0.5rem,2.5vw + 0.4rem, 1.5rem);
   font-weight: bold;
   margin-top: auto;
   margin-bottom: auto;
+  margin-left: 0px;
 }
 
 .transaction-card h2 {
-  font-size: 3vw;
-  margin-left: 1.5vh;
-  margin-right: 1.5vh;
+  font-size: clamp(0.5rem,1.5vw + 0.4rem, 1.5rem);
+  margin-inline: max(1rem,1.5vh);
   margin-top: auto;
   margin-bottom: auto;
 }
 .transaction-card .amount-category {
-  margin-left: 4vw;
   display: flex;
+}
+.transaction-card .amount {
+  width: max(6vw, 4rem);
+
 }
 
 .transaction-card img {
   width: 4vw;
-  font-size: cap;
   height: 100%;
   margin-top: auto;
   margin-bottom: auto;
-  /* margin-left: auto; */
+  margin-left: auto;
   margin-right: 2vw;
 }
 .transaction-card img:hover {
@@ -217,6 +257,8 @@ input:checked + .slider:before {
   align-items: center;
   font-weight: 600;
   padding: 3px;
+  font-size: clamp(0.5rem,1.5vw + 0.4rem, 1rem);
+
 }
 
 .transaction-form>div {

@@ -13,9 +13,13 @@ export default function Home() {
                 sessionStorage.removeItem("user_id")
                 goTo("/login")
             }}>Logout</button>
+            <div className="content">
             <InfoCard/>
             <TransactionForm/>
             <TransactionList/>
+        
+
+            </div>
         </>
     );
 }
