@@ -51,6 +51,25 @@
     flex-direction: column;
     align-items: center;
   }
+  .empty {
+    width: 90%;
+    height: fit-content;
+    text-align: center;
+    background-color: var(--secondary-color);
+    border-radius: 1vh;
+    box-shadow: 0 2px 4px var(--ternary-color);
+    font-size: clamp(0.5rem, 1.5vw + 0.4rem, 1rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 15vw;
+    padding-block: 5vh;
+    /* margin-left: 10vw; */
+    /* margin-right: 0vw; */
+    margin-top: 10vh;
+    font-size: clamp(1rem, 2vw + 0.4rem, 2rem);
+  }
 }
 @media only screen and (max-width: 767px) {
   .components {
@@ -95,6 +114,21 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+  }
+  .empty {
+    display: flex;
+    height: fit-content;
+    text-align: center;
+    background-color: var(--secondary-color);
+    border-radius: 1vh;
+    box-shadow: 0 2px 4px var(--ternary-color);
+    font-size: clamp(0.5rem, 1.5vw + 0.4rem, 1rem);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 1vw;
+    padding-block: 1vh;
+    font-size: clamp(1rem, 2vw + 0.4rem, 2rem);
   }
 }
 
@@ -179,6 +213,7 @@ p {
   flex-direction: column;
   /* width: 60%; */
 }
+
 
 /* Transaction card styles */
 .transaction-card {

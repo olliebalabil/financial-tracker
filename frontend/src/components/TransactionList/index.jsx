@@ -20,11 +20,18 @@ export default function TransactionList() {
     getAccountData()
   }, [sessionStorage.getItem("user_id")])
   return (
-    <div className='transaction-list'>
+    <>
+    
+      {transactions[0]? null:<div className='transaction-list empty'>
+      <p>Get Started By Adding A Transaction</p>
+      </div> }
+      <div className="transaction-list">
       {transactions.map((t) =>
-      <TransactionCard transaction={t} key={t.transaction_id}/>
+
+<TransactionCard transaction={t} key={t.transaction_id}/>
         
-      )}
-    </div>
+        )}
+      </div>
+        </>
   )
 }
