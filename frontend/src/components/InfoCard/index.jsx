@@ -16,7 +16,6 @@ export default function InfoCard() {
             }
 
         } catch (err) {
-            console.error({ error: err })
         }
     }
     getAccountData()

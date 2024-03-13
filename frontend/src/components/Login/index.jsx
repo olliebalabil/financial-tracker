@@ -45,7 +45,6 @@ export default function Login() {
           }, 2500)
         }
       } catch (err) {
-        console.error({ error: err })
       } finally {
         setLoading(false)
       }

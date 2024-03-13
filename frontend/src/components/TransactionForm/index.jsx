@@ -48,7 +48,6 @@ export default function TransactionForm() {
           setBalance([balance[0], (balance[1] - data.amount).toFixed(2)])
         }
       } catch (err) {
-        console.error({ error: err })
       }
     }
     if (amount==0) {
