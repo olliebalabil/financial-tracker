@@ -22,16 +22,16 @@ export default function TransactionList() {
   return (
     <>
     
-      {transactions[0]? null:<div className='transaction-list empty'>
-      <p>Get Started By Adding A Transaction</p>
-      </div> }
-      <div className="transaction-list">
+      {transactions[0]?  <div className="transaction-list">
       {transactions.map((t) =>
 
 <TransactionCard transaction={t} key={t.transaction_id}/>
         
         )}
-      </div>
+      </div>:<div className='transaction-list empty'>
+      <p>Get Started By Adding A Transaction</p>
+      </div> }
+     
         </>
   )
 }

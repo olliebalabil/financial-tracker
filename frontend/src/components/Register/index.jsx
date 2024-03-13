@@ -145,13 +145,21 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
           value={passwordConfirmation}
           placeholder="Confirm password"
         />
+        <div className="currency">
+
+        <label>Currency</label>
         <select name="currency" id="" onChange={handleCurrency}>
           <option value="£">£</option>
           <option value="€">€</option>
           <option value="¥">¥</option>
           <option value="$">$</option>
         </select>
+        </div>
+        <div className="initial-balance">
+
+        <label>Balance</label>
         <input type="number" min="0" step="0.01" value={initialAmount} onChange={handleInitialAmount} />
+        </div>
         <input type="submit" />
       <p>{message}</p>
       {loading && <div className="loading">Loading&#8230;</div>}
