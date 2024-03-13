@@ -5,8 +5,9 @@ export default function TransactionForm() {
   const { balance, setBalance } = useBalance()
   const [reference, setReference] = useState()
   const [amount, setAmount] = useState(0)
-  const [category, setCategory] = useState("Other")
+  const [category, setCategory] = useState("Miscellaneous")
   const [deposit, setDeposit] = useState(false)
+  const [message,setMessage] = useState("")
 
   const handleReference = (e) => {
     setReference(e.target.value)
@@ -50,30 +51,46 @@ export default function TransactionForm() {
         console.error({ error: err })
       }
     }
-    createTransaction()
-    setAmount(0)
-    setCategory("")
-    setReference("")
+    if (amount==0) {
+      setMessage(`Cannot make a transaction of ${balance[0]}0`)
+      setTimeout(()=> {
+        setMessage("")
+      },2500)
+    } else {
+
+      createTransaction()
+      setAmount(0)
+      setCategory("")
+      setReference("")
+    }
   }
 
 
   return (
     <form onSubmit={handleSubmit} className='transaction-form'>
       <div className="reference">
-      <label>Reference </label>
+      <label className='form-label'>Reference </label>
       <input type="text" onChange={handleReference} value={reference} />
       </div>
       <div className="amount">
-      <label>Amount </label>
+      <label className='form-label'>Amount </label>
       <input type="number" min="0" step="0.01" onChange={handleAmount} value={amount} />
 
       </div>
-      <label>Deposit</label>
+      <div className="switch-and-category">
+        
+      <div className="deposit-switch">
+      {
+        deposit?<label className='deposit-label'>Deposit</label>:<label className='deposit-label'>Withdraw</label>
+      }
+      
       <label className="switch">
 
         <input type="checkbox" onChange={handleToggle} />
         <span className="slider round"></span>
       </label>
+      </div>
+      <div className="category">
 
       <label>Category </label>
       <select onChange={handleCategory} value={category}>
@@ -89,7 +106,10 @@ export default function TransactionForm() {
 
 
       </select>
+      </div>
+      </div>
       <input type="submit" />
+      <p>{message}</p>
     </form>
   )
 }

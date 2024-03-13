@@ -73,7 +73,7 @@ export default function Login() {
 
   return (
 
-    <>
+    <div className="login">
       <form onSubmit={handleSubmit} className="login-form">
         <input
           type="text"
@@ -92,10 +92,10 @@ export default function Login() {
         />
         <br />
         <input type="submit" />
-      </form>
       <p>{message}</p>
-      {loading && <h3>Loading...</h3>}
-      <NavLink to="/register">Don't have an account? Create an account here</NavLink>
-    </>
+      <NavLink className='link' to="/register">Don't have an account? Create an account here</NavLink>
+      {loading && <div className="loading">Loading&#8230;</div>}
+      </form>
+    </div>
   );
 }

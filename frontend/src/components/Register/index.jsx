@@ -119,7 +119,7 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
   }
 
   return (
-    <>
+    <div className='register'>
       <form onSubmit={handleSubmit} className='register-form'>
         <input
           type="text"
@@ -153,13 +153,11 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         </select>
         <input type="number" min="0" step="0.01" value={initialAmount} onChange={handleInitialAmount} />
         <input type="submit" />
-      </form>
       <p>{message}</p>
-      {loading && <h3>Creating Account...</h3>}
-      <NavLink to="/login">Already have an account? Login here</NavLink>
-    </>
+      {loading && <div className="loading">Loading&#8230;</div>}
+      <NavLink className='link' to="/login">Already have an account? Login here</NavLink>
+      </form>
+    </div>
   )
 }
 
-
-//<div dangerouslySetInnerHTML={{ __html: currencies[key].symbol.default.code }}></div>
