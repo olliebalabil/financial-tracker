@@ -27,7 +27,6 @@ export default function TransactionCard({ transaction }) {
           setBalance([balance[0], (parseFloat(balance[1]) + parseFloat(data.amount)).toFixed(2)])
         }
       } catch (err) {
-        console.error({ error: err })
       }
     }
     deleteTransaction()

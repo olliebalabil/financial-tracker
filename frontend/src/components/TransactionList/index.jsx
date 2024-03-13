@@ -14,7 +14,6 @@ export default function TransactionList() {
         }
 
       } catch (err) {
-        console.error({ error: err })
       }
     }
     getAccountData()

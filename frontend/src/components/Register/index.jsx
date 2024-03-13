@@ -55,7 +55,6 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
 
         }
       } catch (err) {
-        console.error({ error: err })
       } finally {
         setLoading(false)
       }
@@ -78,10 +77,8 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         }
         const response = await fetch("https://financial-tracker-auth.onrender.com/users/register", options)
         if (!response.ok) {
-          console.error(response)
           setLoading(false)
           
-            console.log("This username is already in use.")
             setMessage("This username is already in use.")
             setTimeout(() => {
               setMessage("")
@@ -92,7 +89,6 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
           login(data)
         }
       } catch (err) {
-        console.error({ error: err })
         setLoading(false)
       }
     }
