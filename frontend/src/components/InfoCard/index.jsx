@@ -25,7 +25,7 @@ export default function InfoCard() {
 
     <div className='info-card'>
       {(balance[1]>=0)? <h1>Balance: {balance[0]}{balance[1]}</h1> :
-      <h1>Balance: -{balance[0]}{balance[1]}</h1>}
+      <h1>Balance: -{balance[0]}{Math.abs(balance[1])}</h1>}
      
     </div>
   )
