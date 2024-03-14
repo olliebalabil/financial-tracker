@@ -154,7 +154,7 @@ export default function Register({ setTokenExists, inputValue, setInputValue }) 
         <div className="initial-balance">
 
         <label>Balance</label>
-        <input type="number" min="0" step="0.01" value={initialAmount} onChange={handleInitialAmount} />
+        <input type="number"  step="0.01" value={initialAmount} onChange={handleInitialAmount} />
         </div>
         <input type="submit" />
       <p>{message}</p>
