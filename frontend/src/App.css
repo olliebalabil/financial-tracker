@@ -9,38 +9,46 @@
   --highlight2-color: #3b7e25
 }
 
+/* desktop screen */
 @media only screen and (min-width: 768px) {
   .components {
     display: flex;
     justify-content: space-around;
   }
+
   .info-form {
-    margin-inline:auto ;
+    margin-inline: auto;
     width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
- 
+
   .transaction-list {
+    margin-left: 2vw;
+    margin-right: auto;
     display: flex;
     flex-direction: column;
     align-items: left;
     width: 50%;
+    margin-top: 3vh;
   }
-  .transaction-card{
+
+  .transaction-card {
     width: 90%;
   }
+
   .info-card {
-      /* max-width: 90vw; */
-  width: fit-content;
-  height: 3vh;
-  padding: 2vh;
-  margin: 3vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    /* max-width: 90vw; */
+    width: fit-content;
+    height: 3vh;
+    padding: 2vh;
+    margin: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
   .transaction-form {
     width: 35vw;
     height: auto;
@@ -51,6 +59,7 @@
     flex-direction: column;
     align-items: center;
   }
+
   .empty {
     /* width: 60%; */
     height: fit-content;
@@ -70,7 +79,32 @@
     margin-top: 16vh;
     font-size: clamp(1rem, 2vw + 0.4rem, 2rem);
   }
+  .transaction-card img {
+    width: 4vw;
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 2vw;
+  }
+  
+  .transaction-card img:hover {
+    width: 4.5vw;
+    margin-right: 1.7vw;
+  }
+  .transaction-card .circle-title {
+    display: flex;
+    width: max(10rem, 30%);
+  }
+  .transaction-card h2 {
+    font-size: clamp(0.5rem, 1.5vw + 0.4rem, 1.5rem);
+    margin-inline: max(1rem, 1.5vh);
+    margin-top: auto;
+    margin-bottom: auto;
+  }
 }
+
+/* mobile screen */
 @media only screen and (max-width: 767px) {
   .components {
     display: flex;
@@ -78,6 +112,7 @@
     align-items: center;
     width: 100%;
   }
+
   .info-form {
     display: flex;
     flex-direction: column;
@@ -89,21 +124,24 @@
     flex-direction: column;
     align-items: center;
     width: 90%;
-    margin: 0px;
+    margin-inline: auto;
   }
-  .transaction-card{
+
+  .transaction-card {
     width: 100%;
   }
+
   .info-card {
-  width: fit-content;
-  height: 3vh;
-  padding: 2vh;
-  margin-inline:auto;
-  margin-top: 1.5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: fit-content;
+    height: 3vh;
+    padding: 2vh;
+    margin-inline: auto;
+    margin-top: 1.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
   .transaction-form {
     width: 60vw;
     height: auto;
@@ -115,6 +153,7 @@
     flex-direction: column;
     align-items: center;
   }
+
   .empty {
     display: flex;
     height: fit-content;
@@ -130,6 +169,35 @@
     padding-block: 1vh;
     font-size: clamp(1rem, 2vw + 0.4rem, 2rem);
   }
+  .transaction-card img {
+    width: 4vw;
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 2vw;
+  }
+  
+  .transaction-card img:hover {
+    width: 4.5vw;
+    margin-right: 1.7vw;
+  }
+  .amount-category {
+    margin:0px
+  }
+  .amount {
+    margin: 0px;
+  }
+  .transaction-card .circle-title {
+    display: flex;
+    width: 45%;
+  }
+  .transaction-card h2 {
+    font-size: clamp(0.5rem, 1.5vw + 0.4rem, 1.5rem);
+    margin-inline: max(0.3rem, 0.4vw);
+    margin-top: auto;
+    margin-bottom: auto;
+  }
 }
 
 body,
@@ -140,6 +208,42 @@ html {
   background-color: var(--primary-color);
   color: var(--text-color);
 }
+
+.header {
+  display: flex;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  align-items: center;
+  height: 8vh;
+}
+
+.header>h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(2.5rem, 6vw + 0.4rem, 4rem);
+  font-weight:900;
+}
+
+.logout {
+  display: block;
+  margin-left: auto;
+  margin-right: 2vw;
+  font-size: large;
+  background-color: var(--ternary-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px var(--text-color);
+  transition: 500ms;
+}
+
+.logout:hover {
+  box-shadow: 0 4px 8px var(--text-color);
+}
+
 
 
 .login,
@@ -155,24 +259,29 @@ html {
   margin-block: 10vh;
   padding: 2vw;
 }
+
 .register-form>input[type="submit"] {
   margin-top: 2vh;
 }
+
 .login-form>input,
 .register-form>input {
   margin-inline: auto;
   max-width: 90%;
 }
 
-.register-form>div>select, .register-form>.initial-balance>input {
+.register-form>div>select,
+.register-form>.initial-balance>input {
   margin-inline: auto;
   width: 50%;
   margin-bottom: 0px;
   background-color: var(--secondary-color);
 }
+
 .register-form>.currency {
   margin-bottom: 1vh;
 }
+
 .register-form>.currency>label {
   min-width: 50%;
   max-width: 50%;
@@ -182,26 +291,14 @@ html {
   min-width: 50%;
   max-width: 50%;
 }
+
 .link,
 p {
   color: var(--text-color);
   font-weight: 500;
 }
 
-.logout {
-  display: block;
-  margin-left: auto;
-  margin-right: 2vw;
-  margin-block: 2vw;
-  background-color: var(--ternary-color);
-  color: var(--primary-color);
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px var(--ternary-color);
-  transition: 500ms;
-}
+
 
 
 .form-and-list {
@@ -221,8 +318,8 @@ p {
 
 
 .transaction-list {
-  margin-left: 2vw;
-  margin-right: auto;
+
+
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -248,11 +345,7 @@ p {
   box-shadow: 0 6px 12px var(--ternary-color);
 }
 
-.transaction-card .circle-title {
-  display: flex;
-  width: max(10rem, 30%);
 
-}
 
 .transaction-card .circle-title .title {
   white-space: nowrap;
@@ -267,7 +360,7 @@ p {
   aspect-ratio: 1/1;
   margin-top: auto;
   margin-bottom: auto;
-  margin-inline: 1rem;
+  margin-right: 1rem;
 
   border-radius: 50%;
 }
@@ -278,7 +371,7 @@ p {
   aspect-ratio: 1/1;
   margin-top: auto;
   margin-bottom: auto;
-  margin-inline: 1rem;
+  margin-right: 1rem;
   border-radius: 50%;
 }
 
@@ -290,12 +383,7 @@ p {
   margin-left: 0px;
 }
 
-.transaction-card h2 {
-  font-size: clamp(0.5rem, 1.5vw + 0.4rem, 1.5rem);
-  margin-inline: max(1rem, 1.5vh);
-  margin-top: auto;
-  margin-bottom: auto;
-}
+
 
 .transaction-card .amount-category {
   display: flex;
@@ -306,19 +394,7 @@ p {
 
 }
 
-.transaction-card img {
-  width: 4vw;
-  height: 100%;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: 2vw;
-}
 
-.transaction-card img:hover {
-  width: 4.5vw;
-  margin-right: 1.7vw;
-}
 
 
 /* Form styles */
@@ -356,10 +432,11 @@ input[type="submit"] {
   border-radius: 5px;
   box-shadow: 0 2px 4px var(--ternary-color);
   transition: 500ms;
+  font-size: large;
+  margin-top: 1.5vh;
 }
 
-input[type="submit"]:hover,
-.logout:hover {
+input[type="submit"]:hover {
   background-color: var(--text-color);
 }
 
@@ -438,7 +515,9 @@ input:checked+.slider:before {
 }
 
 
-.transaction-form>.amount, .register-form>.currency,.register-form>.initial-balance {
+.transaction-form>.amount,
+.register-form>.currency,
+.register-form>.initial-balance {
   display: flex;
   border: 2px solid var(--text-color);
   border-left: none;
@@ -447,7 +526,9 @@ input:checked+.slider:before {
   align-items: center;
 }
 
-.transaction-form>.amount>input,.register-form>.currency>input,.register-form>.initial-balance>input {
+.transaction-form>.amount>input,
+.register-form>.currency>input,
+.register-form>.initial-balance>input {
   border: none;
   outline: none;
   margin: 0px;
@@ -475,16 +556,20 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0px;
 
 }
-.transaction-form > p {
+
+.transaction-form>p {
   text-align: center;
 }
-.transaction-form>div>.form-label, .register-form>div>label {
+
+.transaction-form>div>.form-label,
+.register-form>div>label {
   width: max(35vw, 9rem);
   border-right: 2px solid var(--text-color);
   text-align: center;
 }
 
-.transaction-form>div>input, .register-form>div>input {
+.transaction-form>div>input,
+.register-form>div>input {
   background-color: var(--secondary-color);
   padding-top: auto;
   padding-bottom: auto;
@@ -503,14 +588,16 @@ input[type="number"]::-webkit-outer-spin-button {
 
   text-align: center;
 }
+
 .category {
 
   text-align: center;
 }
-.category > select {
+
+.category>select {
   background-color: var(--primary-color);
   color: var(--text-color);
-  outline:none;
+  outline: none;
 }
 
 /* Absolute Center Spinner */

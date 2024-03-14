@@ -4,5 +4,5 @@ export {default as TransactionForm} from "./TransactionForm"
 export {default as TransactionList} from "./TransactionList"
 export {default as TransactionCard} from "./TransactionCard"
 export {default as InfoCard} from "./InfoCard"
-
-//stats on category
+export {default as Header } from "./Header"
+export {default as Logout} from "./Logout"
