@@ -110,6 +110,8 @@ export default function TransactionForm() {
         <option value="Travel">Travel</option>
         <option value="Entertainment">Entertainment</option>
         <option value="Income">Income</option>
+        <option value="Transfer">Transfer</option>
+
 
 
 
