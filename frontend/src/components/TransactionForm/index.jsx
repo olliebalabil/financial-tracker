@@ -29,18 +29,27 @@ export default function TransactionForm() {
         if (deposit) {
           newAmount = -newAmount
         }
+        let newCategory = category
+        if (!category) {
+          newCategory = "Miscellaneous"
+        }
+        let newReference = reference
+        if (!reference) {
+          newReference = "Transaction"
+        }
         const options = {
           method: "POST",
           body: JSON.stringify({
             user_id: sessionStorage.getItem("user_id"),
-            reference: reference,
+            reference: newReference,
             amount: newAmount,
-            category: category
+            category: newCategory
           }),
           headers: {
             "Content-Type": "application/json"
           }
         }
+        console.log(options)
         const response = await fetch("https://financial-tracker-auth.onrender.com/transaction/transaction", options)
         if (response.status == 200) {
           const data = await response.json()
