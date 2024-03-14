@@ -215,14 +215,14 @@ html {
   background-color: var(--secondary-color);
   color: var(--text-color);
   align-items: center;
-  height: 8vh;
+  height: 9vh;
 }
 
 .header>h1 {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: clamp(2.5rem, 6vw + 0.4rem, 4rem);
+  font-size: clamp(2.3rem, 5.5vw + 0.4rem, 3.7rem);
   font-weight:900;
 }
 
